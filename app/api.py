@@ -3,6 +3,11 @@ from app.predict import predict_performance
 
 app = Flask(__name__)
 
+@app.route("/")
+def home():
+    return "Skill Gap Prediction API is Running Successfully"
+
+
 @app.route("/predict", methods=["POST"])
 def predict():
 
