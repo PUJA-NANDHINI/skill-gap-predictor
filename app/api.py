@@ -22,7 +22,8 @@ def predict():
     if len(sequence) != 12:
         return jsonify({"error": "Sequence must contain exactly 12 values"}), 400
 
-    prediction = 80
+   prediction = predict_performance(sequence)
+
 
     return jsonify({
         "predicted_quiz_score": prediction
