@@ -27,7 +27,7 @@ def predict():
         return jsonify({"error": "Sequence must contain exactly 12 values"}), 400
 
 
-    prediction = 75
+    prediction = 80
 
 
     return jsonify({
