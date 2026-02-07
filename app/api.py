@@ -2,6 +2,8 @@ from flask import Flask, request, jsonify
 from app.predict import predict_performance
 
 app = Flask(__name__)
+print("API FILE LOADED SUCCESSFULLY")
+
 
 @app.route("/")
 def home():
@@ -10,6 +12,8 @@ def home():
 
 @app.route("/predict", methods=["POST"])
 def predict():
+    print("PREDICT ENDPOINT HIT")
+
 
     data = request.get_json(force=True)
 
@@ -18,7 +22,7 @@ def predict():
         return jsonify({"error": "Sequence missing"}), 400
 
     sequence = data["sequence"]
-    
+
     if len(sequence) != 12:
         return jsonify({"error": "Sequence must contain exactly 12 values"}), 400
 
