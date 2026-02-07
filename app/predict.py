@@ -2,8 +2,10 @@ import numpy as np
 from tensorflow.keras.models import load_model
 
 # Load trained model
-model = load_model("model/skill_gap_lstm.h5")
 
+model_path = os.path.join(os.path.dirname(__file__), "..", "model", "skill_gap_lstm.h5")
+model = load_model(model_path)
+print("Model loaded successfully")
 
 def predict_performance(sequence):
 
