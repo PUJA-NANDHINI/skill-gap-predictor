@@ -4,19 +4,15 @@ from app.predict import predict_performance
 app = Flask(__name__)
 print("API FILE LOADED SUCCESSFULLY")
 
-
 @app.route("/")
 def home():
     return "Skill Gap Prediction API is Running Successfully"
-
 
 @app.route("/predict", methods=["POST"])
 def predict():
     print("PREDICT ENDPOINT HIT")
 
-
     data = request.get_json(force=True)
-
 
     if "sequence" not in data:
         return jsonify({"error": "Sequence missing"}), 400
@@ -26,9 +22,7 @@ def predict():
     if len(sequence) != 12:
         return jsonify({"error": "Sequence must contain exactly 12 values"}), 400
 
-
     prediction = 80
-
 
     return jsonify({
         "predicted_quiz_score": prediction
