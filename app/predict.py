@@ -1,20 +1,33 @@
 import numpy as np
-from tensorflow.keras.models import load_model
 import os
+from tensorflow.keras.models import load_model
 
-# Get the absolute path to the model
-MODEL_PATH = os.path.join(os.path.dirname(__file__), "..", "model", "skill_gap_lstm.h5")
+# Load trained model from the correct folder
+model_path = os.path.join(os.path.dirname(__file__), "..", "model", "skill_gap_lstm.h5")
+model = load_model(model_path)
+print("Model loaded successfully from:", model_path)
+
 
 def predict_performance(sequence):
-    # Lazy load the model inside the function
-    model = load_model(MODEL_PATH)
-    print("Model loaded successfully inside predict function")
+    try:
+        print("Input sequence received:", sequence)
 
-    # Convert input to numpy array and reshape for LSTM
-    sequence = np.array(sequence)
-    sequence = sequence.reshape(1, 3, 4)  # 1 sample, 3 weeks, 4 features
+        # Ensure sequence is numeric
+        sequence = np.array(sequence, dtype=float)
 
-    prediction = model.predict(sequence)
+        if sequence.shape[0] != 12:
+            raise ValueError("Sequence must contain exactly 12 numeric values.")
 
-    return float(prediction[0][0])
+        # Reshape to match LSTM input (1 sample, 3 weeks, 4 features)
+        sequence = sequence.reshape(1, 3, 4)
 
+        # Make prediction
+        prediction = model.predict(sequence)
+        predicted_value = float(prediction[0][0])
+        print("Predicted value:", predicted_value)
+
+        return predicted_value
+
+    except Exception as e:
+        print("Error in prediction:", e)
+        return None
