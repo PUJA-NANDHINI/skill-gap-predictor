@@ -10,6 +10,7 @@ def home():
 
 @app.route("/predict", methods=["POST"])
 def predict():
+    print("PREDICT ENDPOINT HIT")
     data = request.get_json(force=True)
     if "sequence" not in data:
         return jsonify({"error": "Sequence missing"}), 400
