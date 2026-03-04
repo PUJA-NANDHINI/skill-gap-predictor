@@ -2,22 +2,109 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Skill Gap Predictor</title>
+    <title>AI Skill Gap Predictor</title>
     <style>
-        body { font-family: Arial, sans-serif; padding: 40px; text-align: center; }
-        input { width: 400px; padding: 10px; font-size: 16px; }
-        button { padding: 10px 20px; font-size: 16px; margin-left: 10px; cursor: pointer; }
-        h2 { color: green; margin-top: 30px; }
+        body {
+            font-family: Arial, sans-serif;
+            padding: 40px;
+            background-color: #f4f6f9;
+            text-align: center;
+        }
+
+        h1 {
+            color: #2c3e50;
+        }
+
+        .section {
+            background: white;
+            padding: 20px;
+            margin: 20px auto;
+            width: 80%;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        .week {
+            margin-bottom: 20px;
+        }
+
+        input {
+            width: 150px;
+            padding: 8px;
+            margin: 5px;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 15px;
+        }
+
+        h2 {
+            margin-top: 20px;
+            color: green;
+        }
+
+        .info {
+            text-align: left;
+            font-size: 15px;
+        }
     </style>
 </head>
 <body>
-    <h1>Skill Gap Prediction</h1>
-    <p>Enter 12 numbers (comma-separated, e.g., 4,5,6,...,3)</p>
-    <input type="text" id="sequence" placeholder="Enter 12 numbers">
-    <button onclick="predict()">Predict</button>
+
+<h1>AI-Based Skill Gap Predictor</h1>
+
+<div class="section info">
+    <h3>📌 How This System Works</h3>
+    <p>
+        This system analyzes 3 weeks of student performance data across 4 key parameters:
+    </p>
+    <ul>
+        <li><b>Practice Hours</b> – Time spent practicing concepts</li>
+        <li><b>Assignment Score</b> – Performance in assignments</li>
+        <li><b>Error Count</b> – Number of mistakes made</li>
+        <li><b>Quiz Score</b> – Weekly quiz performance</li>
+    </ul>
+    <p>
+        The data is processed using an LSTM deep learning model to predict the future quiz score and identify skill gaps.
+    </p>
+</div>
+
+<div class="section">
+    <h3>Enter 3 Weeks Performance Data</h3>
+
+    <div class="week">
+        <h4>Week 1</h4>
+        <input type="number" id="w1_ph" placeholder="Practice Hours">
+        <input type="number" id="w1_as" placeholder="Assignment Score">
+        <input type="number" id="w1_ec" placeholder="Error Count">
+        <input type="number" id="w1_qs" placeholder="Quiz Score">
+    </div>
+
+    <div class="week">
+        <h4>Week 2</h4>
+        <input type="number" id="w2_ph" placeholder="Practice Hours">
+        <input type="number" id="w2_as" placeholder="Assignment Score">
+        <input type="number" id="w2_ec" placeholder="Error Count">
+        <input type="number" id="w2_qs" placeholder="Quiz Score">
+    </div>
+
+    <div class="week">
+        <h4>Week 3</h4>
+        <input type="number" id="w3_ph" placeholder="Practice Hours">
+        <input type="number" id="w3_as" placeholder="Assignment Score">
+        <input type="number" id="w3_ec" placeholder="Error Count">
+        <input type="number" id="w3_qs" placeholder="Quiz Score">
+    </div>
+
+    <button onclick="predict()">Predict Future Quiz Score</button>
 
     <h2 id="result"></h2>
+</div>
 
-    <script src="script.js"></script>
+<script src="script.js"></script>
+
 </body>
 </html>
