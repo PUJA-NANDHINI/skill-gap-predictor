@@ -39,9 +39,9 @@ def predict():
     avg_errors = sum(error_counts) / 3
 
     # Determine Skill Gap Level (0–100 scale)
-    if prediction < 60:
+    if prediction < 40:
         skill_gap_level = "High Skill Gap"
-    elif prediction < 75:
+    elif prediction < 60:
         skill_gap_level = "Moderate Skill Gap"
     else:
         skill_gap_level = "Low Skill Gap"
