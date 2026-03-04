@@ -32,22 +32,14 @@ async function predict() {
         });
 
         const data = await response.json();
-
         const score = data.predicted_quiz_score.toFixed(2);
 
-        let interpretation = "";
-
-        if (score < 4) {
-            interpretation = "High Skill Gap";
-        } else if (score < 7) {
-            interpretation = "Moderate Skill Gap";
-        } else {
-            interpretation = "Low Skill Gap";
-        }
-
-        document.getElementById("result").innerText =
-            "Predicted Quiz Score: " + score + " (" + interpretation + ")";
-
+        document.getElementById("result").innerHTML =
+             "<strong>Predicted Quiz Score:</strong> " + score + "<br><br>" +
+             "<strong>Skill Gap Level:</strong> " + data.skill_gap_level + "<br>" +
+             "<strong>Weak Area:</strong> " + data.weak_area + "<br>" +
+             "<strong>Recommendation:</strong> " + data.recommendation;
+        
     } catch (error) {
         alert("Failed to get prediction. Check your network or API.");
     }
