@@ -4,17 +4,17 @@ async function predict() {
     Number(document.getElementById("w1_ph").value),
     Number(document.getElementById("w1_as").value),
     Number(document.getElementById("w1_ec").value),
-    Number(document.getElementById("w1_qs").value) / 10,
+    Number(document.getElementById("w1_qs").value),
 
     Number(document.getElementById("w2_ph").value),
     Number(document.getElementById("w2_as").value),
     Number(document.getElementById("w2_ec").value),
-    Number(document.getElementById("w2_qs").value) / 10,
+    Number(document.getElementById("w2_qs").value),
 
     Number(document.getElementById("w3_ph").value),
     Number(document.getElementById("w3_as").value),
     Number(document.getElementById("w3_ec").value),
-    Number(document.getElementById("w3_qs").value) / 10
+    Number(document.getElementById("w3_qs").value)
 ];
 
     if (sequence.some(isNaN)) {

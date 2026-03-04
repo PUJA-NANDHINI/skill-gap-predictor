@@ -38,28 +38,32 @@ def predict():
     avg_assignment = sum(assignment_scores) / 3
     avg_errors = sum(error_counts) / 3
 
-    # Determine Skill Gap Level
-    if prediction < 4:
+    # Determine Skill Gap Level (0–100 scale)
+    if prediction < 60:
         skill_gap_level = "High Skill Gap"
-    elif prediction < 7:
+    elif prediction < 75:
         skill_gap_level = "Moderate Skill Gap"
     else:
         skill_gap_level = "Low Skill Gap"
 
-    # Identify Weak Area
-    if avg_practice < 5:
+    # Identify Weak Area (Adjusted for dataset scale)
+
+    if avg_practice < 4:
         weak_area = "Low Practice Hours"
-        recommendation = "Increase daily practice time to improve understanding."
-    elif avg_assignment < 5:
-        weak_area = "Low Assignment Performance"
-        recommendation = "Focus on completing assignments accurately and on time."
-    elif avg_errors > 5:
+        recommendation = "Increase weekly practice hours to strengthen understanding."
+
+    elif avg_assignment > 1:
+        weak_area = "High Assignment Delay"
+        recommendation = "Submit assignments on time to improve performance."
+
+    elif avg_errors > 12:
         weak_area = "High Error Rate"
-        recommendation = "Review mistakes and practice error correction strategies."
+        recommendation = "Review mistakes carefully and practice error correction."
+
     else:
         weak_area = "Balanced Performance"
         recommendation = "Maintain consistent effort across all activities."
-
+ 
     # 🔹 Step 3: Return Extended Response
     return jsonify({
         "predicted_quiz_score": prediction,
